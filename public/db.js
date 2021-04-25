@@ -1,9 +1,9 @@
 let db;
-// create a new db request for a "budget" database.
+
 const request = indexedDB.open("budget", 1);
 
 request.onupgradeneeded = function(event) {
-   // create object store called "pending" and set autoIncrement to true
+  
   const db = event.target.result;
   db.createObjectStore("pending", { autoIncrement: true });
 };
@@ -40,6 +40,7 @@ function checkDatabase() {
   // get all records from store and set to a variable
   const getAll = store.getAll();
 
+  console.log("check databse")
   getAll.onsuccess = function() {
     if (getAll.result.length > 0) {
       fetch("/api/transaction/bulk", {
@@ -52,13 +53,13 @@ function checkDatabase() {
       })
       .then(response => response.json())
       .then(() => {
-        // if successful, open a transaction on your pending db
+        // if successful open a transaction on your pending db
         const transaction = db.transaction(["pending"], "readwrite");
 
         // access your pending object store
         const store = transaction.objectStore("pending");
 
-        // clear all items in your store
+        
         store.clear();
       });
     }
