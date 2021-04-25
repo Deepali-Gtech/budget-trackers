@@ -16,7 +16,7 @@ When brought back online:
 
   # Deployment
 
-Link to the deployed website:
+Link to the deployed website: https://intense-shore-16050.herokuapp.com/
 
 
 
